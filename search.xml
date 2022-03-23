@@ -3,10 +3,11 @@
   <entry>
     <title>iOS NSUInteger 运算问题</title>
     <url>/2022/03/21/iOS%20NSUInteger%20%E8%BF%90%E7%AE%97%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+    <content><![CDATA[<h2 id="iOS-NSUInteger-运算问题"><a href="#iOS-NSUInteger-运算问题" class="headerlink" title="iOS NSUInteger 运算问题"></a>iOS NSUInteger 运算问题</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>iOS中当NSUInteger参与运算时,一定要注意数值的取值范围。当表达式中存在有符号类型和无符号类型时全部的操做数都自动转换为无符号类型。</p>
+<span id="more"></span>
 
-<h2 id="iOS-NSUInteger-运算问题"><a href="#iOS-NSUInteger-运算问题" class="headerlink" title="iOS NSUInteger 运算问题"></a>iOS NSUInteger 运算问题</h2><p>iOS中当NSUInteger参与运算时,一定要注意数值的取值范围。当表达式中存在有符号类型和无符号类型时全部的操做数都自动转换为无符号类型。</p>
-<p>例如在下面场景中,数组的count是无符号数据NSUInteger,遍历中idx的单位也是无符号数据NSUInteger。<br><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-21-1.png" alt="2022-03-21-1"></p>
+
+<p>例如在下面场景中,数组的count是无符号数据NSUInteger,遍历中idx的单位也是无符号数据NSUInteger。</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">  </span><br><span class="line"><span class="built_in">NSArray</span> *arr1 = @[<span class="string">@&quot;a&quot;</span>];</span><br><span class="line"><span class="built_in">NSArray</span> *arr2 = @[<span class="string">@&quot;1&quot;</span>,<span class="string">@&quot;2&quot;</span>,<span class="string">@&quot;3&quot;</span>];</span><br><span class="line"></span><br><span class="line">[arr2 enumerateObjectsUsingBlock:^(<span class="type">id</span>  _Nonnull obj, <span class="built_in">NSUInteger</span> idx, <span class="type">BOOL</span> * _Nonnull stop) &#123;</span><br><span class="line">    <span class="keyword">if</span> ((arr1.count-idx) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;大于等于0&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;小于0&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>如果两者都是 NSInteger 有符号数据类型,那么arr1.count &#x3D; 1 , idx 分别为0,1,2, 所有(arr1.count-idx) 的值对应为1,0,-1, 所以打印结果应该为:</p>
