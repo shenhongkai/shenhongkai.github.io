@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>iOS暗夜模式适配实操</title>
+    <url>/2022/03/16/iOS%E6%9A%97%E5%A4%9C%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D%E5%AE%9E%E6%93%8D/</url>
+    <content><![CDATA[<p>三个部分<br>1 颜色监听<br>2 图片<br>3 测试啊</p>
+]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>暗夜模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>iOS NSUInteger 运算问题</title>
     <url>/2022/03/21/iOS%20NSUInteger%20%E8%BF%90%E7%AE%97%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h2 id="iOS-NSUInteger-运算问题"><a href="#iOS-NSUInteger-运算问题" class="headerlink" title="iOS NSUInteger 运算问题"></a>iOS NSUInteger 运算问题</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>iOS中当NSUInteger参与运算时,一定要注意数值的取值范围。当表达式中存在有符号类型和无符号类型时全部的操做数都自动转换为无符号类型。</p>
@@ -22,18 +34,6 @@
       </categories>
       <tags>
         <tag>小知识</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>iOS暗夜模式适配实操</title>
-    <url>/2022/03/16/iOS%E6%9A%97%E5%A4%9C%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D%E5%AE%9E%E6%93%8D/</url>
-    <content><![CDATA[<p>三个部分<br>1 颜色监听<br>2 图片<br>3 测试啊</p>
-]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>暗夜模式</tag>
       </tags>
   </entry>
 </search>
