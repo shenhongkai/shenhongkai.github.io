@@ -9,7 +9,7 @@
 <li>颜色适配</li>
 <li>封装基础组件用来监听暗黑模式的变化</li>
 </ol>
-<!---more---->
+<span id="more"></span>
 
 <h4 id="一、图片适配"><a href="#一、图片适配" class="headerlink" title="一、图片适配"></a>一、图片适配</h4><ul>
 <li><p>使用ImageSet</p>
