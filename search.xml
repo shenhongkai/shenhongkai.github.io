@@ -12,41 +12,45 @@
 <!---more---->
 
 <h4 id="一、图片适配"><a href="#一、图片适配" class="headerlink" title="一、图片适配"></a>一、图片适配</h4><ul>
-<li>使用ImageSet</li>
-<li>打开Assets.xcassets</li>
-<li>新建一个Image set  选择右边栏的Appearances中对应的选项适配深色模式。</li>
-</ul>
-<img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-1.png" width="60%" height="70%"   style="display:block">
-
-<ul>
-<li>使用方法：[UIImage imageNamed:@”circle”];</li>
-<li>当模式变化时,UIImage会动态的获取对应模式下的图片资源</li>
+<li><p>使用ImageSet</p>
+</li>
+<li><p>打开Assets.xcassets</p>
+</li>
+<li><p>新建一个Image set  选择右边栏的Appearances中对应的选项适配深色模式。<br><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-1.png"></p>
+<!-- <img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-1.png" width="60%" height="70%"   style="display:block"> -->
+</li>
+<li><p>使用方法：[UIImage imageNamed:@”circle”];</p>
+</li>
+<li><p>当模式变化时,UIImage会动态的获取对应模式下的图片资源</p>
+</li>
 </ul>
 <h4 id="二、颜色适配"><a href="#二、颜色适配" class="headerlink" title="二、颜色适配"></a>二、颜色适配</h4><ul>
-<li>使用ColorSet</li>
-<li>打开Assets.xcassets</li>
-<li>新建一个Color set  选择右边栏的Appearances中对应的选项适配深色模式。</li>
-</ul>
-<img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-2.png" width="60%" height="70%" style="display:block;align:left" >
+<li><p>使用ColorSet</p>
+</li>
+<li><p>打开Assets.xcassets</p>
+</li>
+<li><p>新建一个Color set  选择右边栏的Appearances中对应的选项适配深色模式。<br><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-2.png"></p>
+<!-- <img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-2.png" width="60%" height="70%" style="display:block;align:left" > -->
 
-
-<ul>
-<li>使用方法：<br>self.view.backgroundColor &#x3D; [UIColor colorNamed:@”testColor”]; </li>
-<li>同样当模式发生变化时,UIColor会动态的获取对应模式下的颜色</li>
+</li>
+<li><p>使用方法：<br>self.view.backgroundColor &#x3D; [UIColor colorNamed:@”testColor”]; </p>
+</li>
+<li><p>同样当模式发生变化时,UIColor会动态的获取对应模式下的颜色</p>
+</li>
 </ul>
 <h4 id="三、封装基础组件用来监听暗黑模式的变化"><a href="#三、封装基础组件用来监听暗黑模式的变化" class="headerlink" title="三、封装基础组件用来监听暗黑模式的变化"></a>三、封装基础组件用来监听暗黑模式的变化</h4><p>监听暗黑模式的变化主要是封装系统监听方法,主要分两种监听,可以根据实际情况进行选择使用。</p>
 <h5 id="一-为NSObject对象添加监听回调"><a href="#一-为NSObject对象添加监听回调" class="headerlink" title="(一)为NSObject对象添加监听回调"></a>(一)为NSObject对象添加监听回调</h5><ol>
 <li>利用runtime为需要监听模式变化的obj对象添加一个监听模式变化的block回调,回调参数返回当前的模式标记</li>
 <li>把该obj对象加入NSHashTable表中弱持有该对象</li>
 <li>提前用runtime替换系统traitCollectionDidChange:方法,在替换的方法中判断当前暗黑模式是否发生改变以及当前的模式,然后在NSHashTable表中遍历每一个保存的obj对象,并且调用第一步中为之添加的block回调</li>
-<li>obj对象可以在block带着模式参数回调回来后对obj对象进行适配操作,如下:<img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-3.png" width="60%" height="70%" style="display:block;align:left"></li>
+<li>obj对象可以在block带着模式参数回调回来后对obj对象进行适配操作,如下:<br><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-3.png"><!-- <img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-3.png" width="60%" height="70%" style="display:block;align:left"> --></li>
 </ol>
 <h5 id="二-新建UIColor的分类监听模式的改变"><a href="#二-新建UIColor的分类监听模式的改变" class="headerlink" title="(二)新建UIColor的分类监听模式的改变"></a>(二)新建UIColor的分类监听模式的改变</h5><ol>
-<li><p>建一个UIColor的分类,在分类中根据系统监听回调colorWithDynamicProvider:方法,进行颜色匹配,如下:</p>
-  <img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-4.png" width="60%" height="70%" style="display:block">
+<li><p>建一个UIColor的分类,在分类中根据系统监听回调colorWithDynamicProvider:方法,进行颜色匹配,如下:<br><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-4.png"></p>
+  <!-- <img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-4.png" width="60%" height="70%" style="display:block"> -->
 </li>
-<li><p>使用时:</p>
-<img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-5.png" width="60%" height="70%" style="display:block"></li>
+<li><p>使用时:<br><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-5.png"></p>
+<!-- <img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-5.png" width="60%" height="70%" style="display:block"> --></li>
 </ol>
 ]]></content>
       <categories>
