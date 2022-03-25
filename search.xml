@@ -4,12 +4,14 @@
     <title>iOS暗黑模式适配方案</title>
     <url>/2022/03/16/iOS%E6%9A%97%E5%A4%9C%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D%E5%AE%9E%E6%93%8D/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>暗黑模式适配主要是考虑三个部分</p>
-<span id="more"></span>
 <ol>
 <li>图片适配</li>
 <li>颜色适配</li>
 <li>封装基础组件用来监听暗黑模式的变化</li>
 </ol>
+<span id="more"></span>
+
+
 <h4 id="一、图片适配"><a href="#一、图片适配" class="headerlink" title="一、图片适配"></a>一、图片适配</h4><ul>
 <li><p>使用ImageSet</p>
 </li>
