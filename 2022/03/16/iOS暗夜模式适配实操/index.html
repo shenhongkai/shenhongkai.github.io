@@ -23,28 +23,34 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="三个部分1 颜色监听2 图片3 测试啊">
+    <meta name="description" content="##iOS暗黑模式适配方案 前言暗黑模式适配主要是考虑三个部分  图片适配 颜色适配 封装基础组件用来监听暗黑模式的变化    一、图片适配 使用ImageSet  打开Assets.xcassets  新建一个Image set  选择右边栏的Appearances中对应的选项适配深色模式。    使用方法：[UIImage imageNamed:@”circle”];  当模式变化时,UIIm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS暗夜模式适配实操">
+<meta property="og:title" content="iOS暗黑模式适配方案">
 <meta property="og:url" content="http://example.com/2022/03/16/iOS%E6%9A%97%E5%A4%9C%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D%E5%AE%9E%E6%93%8D/index.html">
 <meta property="og:site_name" content="江边鸟的博客">
-<meta property="og:description" content="三个部分1 颜色监听2 图片3 测试啊">
+<meta property="og:description" content="##iOS暗黑模式适配方案 前言暗黑模式适配主要是考虑三个部分  图片适配 颜色适配 封装基础组件用来监听暗黑模式的变化    一、图片适配 使用ImageSet  打开Assets.xcassets  新建一个Image set  选择右边栏的Appearances中对应的选项适配深色模式。    使用方法：[UIImage imageNamed:@”circle”];  当模式变化时,UIIm">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-5.png">
 <meta property="article:published_time" content="2022-03-16T06:49:10.000Z">
-<meta property="article:modified_time" content="2022-03-16T07:07:34.329Z">
+<meta property="article:modified_time" content="2022-03-25T10:48:17.989Z">
 <meta property="article:author" content="江边鸟">
 <meta property="article:tag" content="暗夜模式">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-1.png">
 
 
 <link rel="canonical" href="http://example.com/2022/03/16/iOS%E6%9A%97%E5%A4%9C%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D%E5%AE%9E%E6%93%8D/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/03/16/iOS%E6%9A%97%E5%A4%9C%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D%E5%AE%9E%E6%93%8D/","path":"2022/03/16/iOS暗夜模式适配实操/","title":"iOS暗夜模式适配实操"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/03/16/iOS%E6%9A%97%E5%A4%9C%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D%E5%AE%9E%E6%93%8D/","path":"2022/03/16/iOS暗夜模式适配实操/","title":"iOS暗黑模式适配方案"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>iOS暗夜模式适配实操 | 江边鸟的博客</title>
+<title>iOS暗黑模式适配方案 | 江边鸟的博客</title>
   
 
 
@@ -133,7 +139,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -146,6 +152,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9B%BE%E7%89%87%E9%80%82%E9%85%8D"><span class="nav-number">1.1.</span> <span class="nav-text">一、图片适配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%A2%9C%E8%89%B2%E9%80%82%E9%85%8D"><span class="nav-number">1.2.</span> <span class="nav-text">二、颜色适配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%B0%81%E8%A3%85%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6%E7%94%A8%E6%9D%A5%E7%9B%91%E5%90%AC%E6%9A%97%E9%BB%91%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8F%98%E5%8C%96"><span class="nav-number">1.3.</span> <span class="nav-text">三、封装基础组件用来监听暗黑模式的变化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80-%E4%B8%BANSObject%E5%AF%B9%E8%B1%A1%E6%B7%BB%E5%8A%A0%E7%9B%91%E5%90%AC%E5%9B%9E%E8%B0%83"><span class="nav-number">1.3.1.</span> <span class="nav-text">(一)为NSObject对象添加监听回调</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C-%E6%96%B0%E5%BB%BAUIColor%E7%9A%84%E5%88%86%E7%B1%BB%E7%9B%91%E5%90%AC%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%94%B9%E5%8F%98"><span class="nav-number">1.3.2.</span> <span class="nav-text">(二)新建UIColor的分类监听模式的改变</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -160,7 +167,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -234,12 +241,12 @@
     </span>
     
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="iOS暗夜模式适配实操 | 江边鸟的博客">
+      <meta itemprop="name" content="iOS暗黑模式适配方案 | 江边鸟的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          iOS暗夜模式适配实操
+          iOS暗黑模式适配方案
         </h1>
 
         <div class="post-meta-container">
@@ -249,9 +256,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-03-16 14:49:10 / 修改时间：15:07:34" itemprop="dateCreated datePublished" datetime="2022-03-16T14:49:10+08:00">2022-03-16</time>
+      <time title="创建时间：2022-03-16 14:49:10" itemprop="dateCreated datePublished" datetime="2022-03-16T14:49:10+08:00">2022-03-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-25 18:48:17" itemprop="dateModified" datetime="2022-03-25T18:48:17+08:00">2022-03-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -272,7 +285,7 @@
       </span>
       <span class="post-meta-item-text">Changyan：</span>
     
-    <a title="iOS暗夜模式适配实操" href="/2022/03/16/iOS%E6%9A%97%E5%A4%9C%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D%E5%AE%9E%E6%93%8D/#SOHUCS" itemprop="discussionUrl">
+    <a title="iOS暗黑模式适配方案" href="/2022/03/16/iOS%E6%9A%97%E5%A4%9C%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D%E5%AE%9E%E6%93%8D/#SOHUCS" itemprop="discussionUrl">
       <span id="sourceId::64466ff661e2813fd313530411c3300f" class="cy_cmt_count" itemprop="commentCount"></span>
     </a>
   </span>
@@ -287,7 +300,55 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>三个部分<br>1 颜色监听<br>2 图片<br>3 测试啊</p>
+        <p>##iOS暗黑模式适配方案</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>暗黑模式适配主要是考虑三个部分</p>
+<ol>
+<li>图片适配</li>
+<li>颜色适配</li>
+<li>封装基础组件用来监听暗黑模式的变化</li>
+</ol>
+<!---more---->
+
+<h4 id="一、图片适配"><a href="#一、图片适配" class="headerlink" title="一、图片适配"></a>一、图片适配</h4><ul>
+<li><p>使用ImageSet</p>
+</li>
+<li><p>打开Assets.xcassets</p>
+</li>
+<li><p>新建一个Image set  选择右边栏的Appearances中对应的选项适配深色模式。</p>
+ <img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-1.png" width="60%" height="70%">
+</li>
+<li><p>使用方法：[UIImage imageNamed:@”circle”];</p>
+</li>
+<li><p>当模式变化时,UIImage会动态的获取对应模式下的图片资源</p>
+</li>
+</ul>
+<h4 id="二、颜色适配"><a href="#二、颜色适配" class="headerlink" title="二、颜色适配"></a>二、颜色适配</h4><ul>
+<li><p>使用ColorSet</p>
+</li>
+<li><p>打开Assets.xcassets</p>
+</li>
+<li><p>新建一个Color set  选择右边栏的Appearances中对应的选项适配深色模式。</p>
+<img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-2.png" width="60%" height="70%">
+</li>
+<li><p>使用方法：<br>self.view.backgroundColor &#x3D; [UIColor colorNamed:@”testColor”]; </p>
+</li>
+<li><p>同样当模式发生变化时,UIColor会动态的获取对应模式下的颜色</p>
+</li>
+</ul>
+<h4 id="三、封装基础组件用来监听暗黑模式的变化"><a href="#三、封装基础组件用来监听暗黑模式的变化" class="headerlink" title="三、封装基础组件用来监听暗黑模式的变化"></a>三、封装基础组件用来监听暗黑模式的变化</h4><p>监听暗黑模式的变化主要是封装系统监听方法,主要分两种监听,可以根据实际情况进行选择使用。</p>
+<h5 id="一-为NSObject对象添加监听回调"><a href="#一-为NSObject对象添加监听回调" class="headerlink" title="(一)为NSObject对象添加监听回调"></a>(一)为NSObject对象添加监听回调</h5><ol>
+<li>利用runtime为需要监听模式变化的obj对象添加一个监听模式变化的block回调,回调参数返回当前的模式标记</li>
+<li>把该obj对象加入NSHashTable表中弱持有该对象</li>
+<li>提前用runtime替换系统traitCollectionDidChange:方法,在替换的方法中判断当前暗黑模式是否发生改变以及当前的模式,然后在NSHashTable表中遍历每一个保存的obj对象,并且调用第一步中为之添加的block回调</li>
+<li>obj对象可以在block带着模式参数回调回来后对obj对象进行适配操作,如下:<img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-3.png" width="60%" height="70%"></li>
+</ol>
+<h5 id="二-新建UIColor的分类监听模式的改变"><a href="#二-新建UIColor的分类监听模式的改变" class="headerlink" title="(二)新建UIColor的分类监听模式的改变"></a>(二)新建UIColor的分类监听模式的改变</h5><ol>
+<li><p>建一个UIColor的分类,在分类中根据系统监听回调colorWithDynamicProvider:方法,进行颜色匹配,如下:</p>
+  <img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-4.png" width="60%" height="70%">
+</li>
+<li><p>使用时:</p>
+<img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-5.png" width="60%" height="70%"></li>
+</ol>
 
     </div>
 
@@ -304,9 +365,6 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/03/14/%E6%B5%8B%E8%AF%95%E8%AF%84%E8%AE%BA/" rel="prev" title="测试评论">
-                  <i class="fa fa-chevron-left"></i> 测试评论
-                </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2022/03/21/iOS%20NSUInteger%20%E8%BF%90%E7%AE%97%E9%97%AE%E9%A2%98/" rel="next" title="iOS NSUInteger 运算问题">
