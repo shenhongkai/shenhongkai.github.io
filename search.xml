@@ -16,7 +16,7 @@
 <li>打开Assets.xcassets</li>
 <li>新建一个Image set  选择右边栏的Appearances中对应的选项适配深色模式。</li>
 </ul>
-<img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-1.png" width="60%" height="70%" style="display:block">
+<img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-1.png" width="60%" height="70%" style="display:block,text-align:left">
 
 <ul>
 <li>使用方法：[UIImage imageNamed:@”circle”];</li>
@@ -39,7 +39,7 @@
 <li>利用runtime为需要监听模式变化的obj对象添加一个监听模式变化的block回调,回调参数返回当前的模式标记</li>
 <li>把该obj对象加入NSHashTable表中弱持有该对象</li>
 <li>提前用runtime替换系统traitCollectionDidChange:方法,在替换的方法中判断当前暗黑模式是否发生改变以及当前的模式,然后在NSHashTable表中遍历每一个保存的obj对象,并且调用第一步中为之添加的block回调</li>
-<li>obj对象可以在block带着模式参数回调回来后对obj对象进行适配操作,如下:<img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-3.png" width="60%" height="70%" style="display:block;text-align:left"></li>
+<li>obj对象可以在block带着模式参数回调回来后对obj对象进行适配操作,如下:<img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-3.png" width="60%" height="70%" style="display:block,text-align:left"></li>
 </ol>
 <h5 id="二-新建UIColor的分类监听模式的改变"><a href="#二-新建UIColor的分类监听模式的改变" class="headerlink" title="(二)新建UIColor的分类监听模式的改变"></a>(二)新建UIColor的分类监听模式的改变</h5><ol>
 <li><p>建一个UIColor的分类,在分类中根据系统监听回调colorWithDynamicProvider:方法,进行颜色匹配,如下:</p>
