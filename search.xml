@@ -84,7 +84,7 @@
   <entry>
     <title>git命令总结</title>
     <url>/2022/03/28/git%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>总结一下git命令的使用,回顾一些不常用的 git reset, git rebase等命令。</p>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>总结一下git命令,回顾一下Git reset、revert、rebase的简单使用等。</p>
 <span id="more"></span>
 
 <h3 id="Git思想"><a href="#Git思想" class="headerlink" title="Git思想"></a>Git思想</h3><p>直接记录快照，而非比较差异。和其他版本控制系统不同的是，Git存储数据时将数据看成小型的文件系统的一组快照，每次在修改文件提交更新后，它主要对当时的所有文件制作一个快照并保存到快照索引中。Git还对这一个保存过程进行了优化，也就是说当文件没有修改时，Git不会重新存储文件而是只保留一个链接指向之前存储的文件。这是Git与其他版本控制系统的重要区别。</p>
@@ -220,6 +220,7 @@
       </categories>
       <tags>
         <tag>回顾总结</tag>
+        <tag>Git</tag>
       </tags>
   </entry>
 </search>
