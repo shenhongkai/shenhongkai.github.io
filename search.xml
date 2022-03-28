@@ -42,7 +42,6 @@
 <li><p>打开Assets.xcassets</p>
 </li>
 <li><p>新建一个Image set  选择右边栏的Appearances中对应的选项适配深色模式。<br><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-1.png"></p>
-<!-- <img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-1.png" width="60%" height="70%"   style="display:block"> -->
 </li>
 <li><p>使用方法：[UIImage imageNamed:@”circle”];</p>
 </li>
@@ -55,8 +54,6 @@
 <li><p>打开Assets.xcassets</p>
 </li>
 <li><p>新建一个Color set  选择右边栏的Appearances中对应的选项适配深色模式。<br><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-2.png"></p>
-<!-- <img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-2.png" width="60%" height="70%" style="display:block;align:left" > -->
-
 </li>
 <li><p>使用方法：<br>self.view.backgroundColor &#x3D; [UIColor colorNamed:@”testColor”]; </p>
 </li>
@@ -68,14 +65,13 @@
 <li>利用runtime为需要监听模式变化的obj对象添加一个监听模式变化的block回调,回调参数返回当前的模式标记</li>
 <li>把该obj对象加入NSHashTable表中弱持有该对象</li>
 <li>提前用runtime替换系统traitCollectionDidChange:方法,在替换的方法中判断当前暗黑模式是否发生改变以及当前的模式,然后在NSHashTable表中遍历每一个保存的obj对象,并且调用第一步中为之添加的block回调</li>
-<li>obj对象可以在block带着模式参数回调回来后对obj对象进行适配操作,如下:<br><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-3.png"><!-- <img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-3.png" width="60%" height="70%" style="display:block;align:left"> --></li>
+<li>obj对象可以在block带着模式参数回调回来后对obj对象进行适配操作,如下:<br><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-3.png"></li>
 </ol>
 <h5 id="二-新建UIColor的分类监听模式的改变"><a href="#二-新建UIColor的分类监听模式的改变" class="headerlink" title="(二)新建UIColor的分类监听模式的改变"></a>(二)新建UIColor的分类监听模式的改变</h5><ol>
 <li><p>建一个UIColor的分类,在分类中根据系统监听回调colorWithDynamicProvider:方法,进行颜色匹配,如下:<br><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-4.png"></p>
-  <!-- <img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-4.png" width="60%" height="70%" style="display:block"> -->
 </li>
 <li><p>使用时:<br><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-5.png"></p>
-<!-- <img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-25-5.png" width="60%" height="70%" style="display:block"> --></li>
+</li>
 </ol>
 ]]></content>
       <categories>
@@ -83,6 +79,148 @@
       </categories>
       <tags>
         <tag>暗夜模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git命令总结</title>
+    <url>/2022/03/28/git%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>总结一下git命令的使用,回顾一些不常用的 git reset, git rebase等命令。</p>
+<span id="more"></span>
+
+<h3 id="Git思想"><a href="#Git思想" class="headerlink" title="Git思想"></a>Git思想</h3><p>直接记录快照，而非比较差异。和其他版本控制系统不同的是，Git存储数据时将数据看成小型的文件系统的一组快照，每次在修改文件提交更新后，它主要对当时的所有文件制作一个快照并保存到快照索引中。Git还对这一个保存过程进行了优化，也就是说当文件没有修改时，Git不会重新存储文件而是只保留一个链接指向之前存储的文件。这是Git与其他版本控制系统的重要区别。</p>
+<p>近乎所有的操作都是在本地执行。Git的大多数操作都是在本地完成，当我们在没有网络或者没有×××的情况下，同样可以使用Git进行办公。因为在本地磁盘上有项目的完整历史，可以在任何时候浏览项目的历史。</p>
+<p>保证数据的完整性。Git为了保证数据的完整性在存储前都会计算校验和，通过校验和来引用。校验和机制叫做SHA-1散列，也叫哈希散列。Git通过对校验和的检查可以保证数据的完整性。</p>
+<p>在Git中，所以文件都是通过校验和进行查找的，而不是文件名。</p>
+<h3 id="Git工作原理"><a href="#Git工作原理" class="headerlink" title="Git工作原理"></a>Git工作原理</h3><p>为了更好的理解Git，需要理解其设计原理。在Git中，文件有三种状态： 已提交（committed）,已修改（modified）和已暂存（staged）。</p>
+<p>已提交： 数据已经安全的保存到本地数据库中。<br>已修改： 数据文件被修改，还没保存到数据库中。<br>已暂存： 对已经修改的文件的当前版本做了标记，包含下次提交的快照。<br>对应文件的三种状态，还引入了三个工作区域的概念： Git仓库，工作目录和暂存区域。</p>
+<p>Git仓库： 用来保存项目的数据的地方。<br>工作目录：项目中某个版本独立提取出来的内容。<br>暂存区域：保存文件下次提交的信息。<br>工作流程：</p>
+<p>在工作目录中修改文件。<br>暂存文件，将文件的快照放入暂存区域。<br>提交更新，找到暂存区域的文件，将快照永久存储。</p>
+<h3 id="一、新建代码库"><a href="#一、新建代码库" class="headerlink" title="一、新建代码库"></a>一、新建代码库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 在当前目录新建一个Git代码库</span><br><span class="line">$ git init</span><br><span class="line"># 新建一个目录，将其初始化为Git代码库</span><br><span class="line">$ git init [project-name]</span><br><span class="line"># 下载一个项目和它的整个代码历史</span><br><span class="line">$ git clone [url]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h3><p>Git的设置文件为.gitconfig，它可以在用户主目录下(全局配置)，也可以在项目目录下(项目配置)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 显示当前的Git配置</span><br><span class="line">$ git config --list</span><br><span class="line"># 编辑Git配置文件</span><br><span class="line">$ git config -e [--global]</span><br><span class="line"># 设置提交代码时的用户信息</span><br><span class="line">$ git config [--global] user.name &quot;[name]&quot;</span><br><span class="line">$ git config [--global] user.email &quot;[email address]&quot;</span><br><span class="line"># 颜色设置</span><br><span class="line">git config --global color.ui true                         # git status等命令自动着色</span><br><span class="line">git config --global color.status auto</span><br><span class="line">git config --global color.diff auto</span><br><span class="line">git config --global color.branch auto</span><br><span class="line">git config --global color.interactive auto</span><br><span class="line">git config --global --unset http.proxy                    # remove  proxy configuration on git</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="三、增加-x2F-删除文件"><a href="#三、增加-x2F-删除文件" class="headerlink" title="三、增加&#x2F;删除文件"></a>三、增加&#x2F;删除文件</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 添加指定文件到暂存区</span><br><span class="line">$ git add [file1] [file2] ...</span><br><span class="line"># 添加指定目录到暂存区，包括子目录</span><br><span class="line">$ git add [dir]</span><br><span class="line"># 添加当前目录的所有文件到暂存区</span><br><span class="line">$ git add .</span><br><span class="line"># 添加每个变化前，都会要求确认</span><br><span class="line"># 对于同一个文件的多处变化，可以实现分次提交</span><br><span class="line">$ git add -p</span><br><span class="line"># 删除工作区文件，并且将这次删除放入暂存区</span><br><span class="line">$ git rm [file1] [file2] ...</span><br><span class="line"># 停止追踪指定文件，但该文件会保留在工作区</span><br><span class="line">$ git rm --cached [file]</span><br><span class="line"># 改名文件，并且将这个改名放入暂存区</span><br><span class="line">$ git mv [file-original] [file-renamed]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="四、代码提交"><a href="#四、代码提交" class="headerlink" title="四、代码提交"></a>四、代码提交</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 提交暂存区到仓库区</span><br><span class="line">$ git commit -m [message]</span><br><span class="line"># 提交暂存区的指定文件到仓库区</span><br><span class="line">$ git commit [file1] [file2] ... -m [message]</span><br><span class="line"># 提交工作区自上次commit之后的变化，直接到仓库区</span><br><span class="line">$ git commit -a</span><br><span class="line"># 提交时显示所有diff信息</span><br><span class="line">$ git commit -v</span><br><span class="line"># 将add和commit合为一步</span><br><span class="line">$ git commit -am &#x27;message&#x27;</span><br><span class="line"># 使用一次新的commit，替代上一次提交</span><br><span class="line"># 如果代码没有任何新变化，则用来改写上一次commit的提交信息</span><br><span class="line">$ git commit --amend -m [message]</span><br><span class="line"># 重做上一次commit，并包括指定文件的新变化</span><br><span class="line">$ git commit --amend [file1] [file2] ...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="五、分支"><a href="#五、分支" class="headerlink" title="五、分支"></a>五、分支</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 列出所有本地分支</span><br><span class="line">$ git branch</span><br><span class="line"># 列出所有远程分支</span><br><span class="line">$ git branch -r</span><br><span class="line"># 列出所有本地分支和远程分支</span><br><span class="line">$ git branch -a</span><br><span class="line"># 新建一个分支，但依然停留在当前分支</span><br><span class="line">$ git branch [branch-name]</span><br><span class="line"># 新建一个分支，并切换到该分支</span><br><span class="line">$ git checkout -b [branch]</span><br><span class="line"># 新建一个分支，指向指定commit</span><br><span class="line">$ git branch [branch] [commit]</span><br><span class="line"># 新建一个分支，与指定的远程分支建立追踪关系</span><br><span class="line">$ git branch --track [branch] [remote-branch]</span><br><span class="line"># 切换到指定分支，并更新工作区</span><br><span class="line">$ git checkout [branch-name]</span><br><span class="line"># 切换到上一个分支</span><br><span class="line">$ git checkout -</span><br><span class="line"># 建立追踪关系，在现有分支与指定的远程分支之间</span><br><span class="line">$ git branch --set-upstream [branch] [remote-branch]</span><br><span class="line"># 合并指定分支到当前分支</span><br><span class="line">$ git merge [branch]</span><br><span class="line"># 选择一个commit，合并进当前分支</span><br><span class="line">$ git cherry-pick [commit]</span><br><span class="line"># 删除分支</span><br><span class="line">$ git branch -d [branch-name]</span><br><span class="line"># 删除远程分支</span><br><span class="line">$ git push origin --delete [branch-name]</span><br><span class="line">$ git branch -dr [remote/branch]</span><br><span class="line"># 检出版本v2.0</span><br><span class="line">$ git checkout v2.0</span><br><span class="line"># 从远程分支develop创建新本地分支devel并检出</span><br><span class="line">$ git checkout -b devel origin/develop</span><br><span class="line"># 检出head版本的README文件（可用于修改错误回退）</span><br><span class="line">git checkout -- README </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="六、标签"><a href="#六、标签" class="headerlink" title="六、标签"></a>六、标签</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 列出所有tag</span><br><span class="line">$ git tag</span><br><span class="line"># 新建一个tag在当前commit</span><br><span class="line">$ git tag [tag]</span><br><span class="line"># 新建一个tag在指定commit</span><br><span class="line">$ git tag [tag] [commit]</span><br><span class="line"># 删除本地tag</span><br><span class="line">$ git tag -d [tag]</span><br><span class="line"># 删除远程tag</span><br><span class="line">$ git push origin :refs/tags/[tagName]</span><br><span class="line"># 查看tag信息</span><br><span class="line">$ git show [tag]</span><br><span class="line"># 提交指定tag</span><br><span class="line">$ git push [remote] [tag]</span><br><span class="line"># 提交所有tag</span><br><span class="line">$ git push [remote] --tags</span><br><span class="line"># 新建一个分支，指向某个tag</span><br><span class="line">$ git checkout -b [branch] [tag]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="七、查看信息"><a href="#七、查看信息" class="headerlink" title="七、查看信息"></a>七、查看信息</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 显示有变更的文件</span><br><span class="line">$ git status</span><br><span class="line"># 显示当前分支的版本历史</span><br><span class="line">$ git log</span><br><span class="line"># 显示commit历史，以及每次commit发生变更的文件</span><br><span class="line">$ git log --stat</span><br><span class="line"># 搜索提交历史，根据关键词</span><br><span class="line">$ git log -S [keyword]</span><br><span class="line"># 显示某个commit之后的所有变动，每个commit占据一行</span><br><span class="line">$ git log [tag] HEAD --pretty=format:%s</span><br><span class="line"># 显示某个commit之后的所有变动，其&quot;提交说明&quot;必须符合搜索条件</span><br><span class="line">$ git log [tag] HEAD --grep feature</span><br><span class="line"># 显示某个文件的版本历史，包括文件改名</span><br><span class="line">$ git log --follow [file]</span><br><span class="line">$ git whatchanged [file]</span><br><span class="line"># 显示指定文件相关的每一次diff</span><br><span class="line">$ git log -p [file]</span><br><span class="line"># 显示过去5次提交</span><br><span class="line">$ git log -5 --pretty --oneline</span><br><span class="line"># 显示所有提交过的用户，按提交次数排序</span><br><span class="line">$ git shortlog -sn</span><br><span class="line"># 显示指定文件是什么人在什么时间修改过</span><br><span class="line">$ git blame [file]</span><br><span class="line"># 显示暂存区和工作区的差异</span><br><span class="line">$ git diff</span><br><span class="line"># 显示暂存区和上一个commit的差异</span><br><span class="line">$ git diff --cached [file]</span><br><span class="line"># 显示工作区与当前分支最新commit之间的差异</span><br><span class="line">$ git diff HEAD</span><br><span class="line"># 显示两次提交之间的差异</span><br><span class="line">$ git diff [first-branch]...[second-branch]</span><br><span class="line"># 显示今天你写了多少行代码</span><br><span class="line">$ git diff --shortstat &quot;@&#123;0 day ago&#125;&quot;</span><br><span class="line"># 显示某次提交的元数据和内容变化</span><br><span class="line">$ git show [commit]</span><br><span class="line"># 显示某次提交发生变化的文件</span><br><span class="line">$ git show --name-only [commit]</span><br><span class="line"># 显示某次提交时，某个文件的内容</span><br><span class="line">$ git show [commit]:[filename]</span><br><span class="line"># 显示当前分支的最近几次提交</span><br><span class="line">$ git reflog</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="八、远程同步"><a href="#八、远程同步" class="headerlink" title="八、远程同步"></a>八、远程同步</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 下载远程仓库的所有变动</span><br><span class="line">$ git fetch [remote]</span><br><span class="line"># 显示所有远程仓库</span><br><span class="line">$ git remote -v</span><br><span class="line"># 显示某个远程仓库的信息</span><br><span class="line">$ git remote show [remote]</span><br><span class="line"># 增加一个新的远程仓库，并命名</span><br><span class="line">$ git remote add [shortname] [url]</span><br><span class="line"># 取回远程仓库的变化，并与本地分支合并</span><br><span class="line">$ git pull [remote] [branch]</span><br><span class="line"># 上传本地指定分支到远程仓库</span><br><span class="line">$ git push [remote] [branch]</span><br><span class="line"># 强行推送当前分支到远程仓库，即使有冲突</span><br><span class="line">$ git push [remote] --force</span><br><span class="line"># 推送所有分支到远程仓库</span><br><span class="line">$ git push [remote] --all</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="九、撤销"><a href="#九、撤销" class="headerlink" title="九、撤销"></a>九、撤销</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 恢复暂存区的指定文件到工作区</span><br><span class="line">$ git checkout [file]</span><br><span class="line"># 恢复某个commit的指定文件到暂存区和工作区</span><br><span class="line">$ git checkout [commit] [file]</span><br><span class="line"># 恢复暂存区的所有文件到工作区</span><br><span class="line">$ git checkout .</span><br><span class="line"># 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变</span><br><span class="line">$ git reset [file]</span><br><span class="line"># 重置暂存区与工作区，与上一次commit保持一致</span><br><span class="line">$ git reset --hard</span><br><span class="line"># 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变</span><br><span class="line">$ git reset [commit]</span><br><span class="line"># 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致</span><br><span class="line">$ git reset --hard [commit]</span><br><span class="line"># 重置当前HEAD为指定commit，但保持暂存区和工作区不变</span><br><span class="line">$ git reset --keep [commit]</span><br><span class="line"># 新建一个commit，用来撤销指定commit</span><br><span class="line"># 后者的所有变化都将被前者抵消，并且应用到当前分支</span><br><span class="line">$ git revert [commit]</span><br><span class="line"># 暂时将未提交的变化移除，稍后再移入</span><br><span class="line">$ git stash</span><br><span class="line">$ git stash pop</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="十、其他"><a href="#十、其他" class="headerlink" title="十、其他"></a>十、其他</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git init                                                  # 初始化本地git仓库（创建新仓库）</span><br><span class="line">git config --global user.name &quot;xxx&quot;                       # 配置用户名</span><br><span class="line">git config --global user.email &quot;xxx@xxx.com&quot;              # 配置邮件</span><br><span class="line">git config --global color.ui true                         # git status等命令自动着色</span><br><span class="line">git config --global color.status auto</span><br><span class="line">git config --global color.diff auto</span><br><span class="line">git config --global color.branch auto</span><br><span class="line">git config --global color.interactive auto</span><br><span class="line">git config --global --unset http.proxy                    # remove  proxy configuration on git</span><br><span class="line">git clone git+ssh://git@192.168.53.168/VT.git             # clone远程仓库</span><br><span class="line">git status                                                # 查看当前版本状态（是否修改）</span><br><span class="line">git add xyz                                               # 添加xyz文件至index</span><br><span class="line">git add .                                                 # 增加当前子目录下所有更改过的文件至index</span><br><span class="line">git commit -m &#x27;xxx&#x27;                                       # 提交</span><br><span class="line">git commit --amend -m &#x27;xxx&#x27;                               # 合并上一次提交（用于反复修改）</span><br><span class="line">git commit -am &#x27;xxx&#x27;                                      # 将add和commit合为一步</span><br><span class="line">git rm xxx                                                # 删除index中的文件</span><br><span class="line">git rm -r *                                               # 递归删除</span><br><span class="line">git log                                                   # 显示提交日志</span><br><span class="line">git log -1                                                # 显示1行日志 -n为n行</span><br><span class="line">git log -5</span><br><span class="line">git log --stat                                            # 显示提交日志及相关变动文件</span><br><span class="line">git log -p -m</span><br><span class="line">git show dfb02e6e4f2f7b573337763e5c0013802e392818         # 显示某个提交的详细内容</span><br><span class="line">git show dfb02                                            # 可只用commitid的前几位</span><br><span class="line">git show HEAD                                             # 显示HEAD提交日志</span><br><span class="line">git show HEAD^                                            # 显示HEAD的父（上一个版本）的提交日志 ^^为上两个版本 ^5为上5个版本</span><br><span class="line">git tag                                                   # 显示已存在的tag</span><br><span class="line">git tag -a v2.0 -m &#x27;xxx&#x27;                                  # 增加v2.0的tag</span><br><span class="line">git show v2.0                                             # 显示v2.0的日志及详细内容</span><br><span class="line">git log v2.0                                              # 显示v2.0的日志</span><br><span class="line">git diff                                                  # 显示所有未添加至index的变更</span><br><span class="line">git diff --cached                                         # 显示所有已添加index但还未commit的变更</span><br><span class="line">git diff HEAD^                                            # 比较与上一个版本的差异</span><br><span class="line">git diff HEAD -- ./lib                                    # 比较与HEAD版本lib目录的差异</span><br><span class="line">git diff origin/master..master                            # 比较远程分支master上有本地分支master上没有的</span><br><span class="line">git diff origin/master..master --stat                     # 只显示差异的文件，不显示具体内容</span><br><span class="line">git remote add origin git+ssh://git@192.168.53.168/VT.git # 增加远程定义（用于push/pull/fetch）</span><br><span class="line">git branch                                                # 显示本地分支</span><br><span class="line">git branch --contains 50089                               # 显示包含提交50089的分支</span><br><span class="line">git branch -a                                             # 显示所有分支</span><br><span class="line">git branch -r                                             # 显示所有原创分支</span><br><span class="line">git branch --merged                                       # 显示所有已合并到当前分支的分支</span><br><span class="line">git branch --no-merged                                    # 显示所有未合并到当前分支的分支</span><br><span class="line">git branch -m master master_copy                          # 本地分支改名</span><br><span class="line">git checkout -b master_copy                               # 从当前分支创建新分支master_copy并检出</span><br><span class="line">git checkout -b master master_copy                        # 上面的完整版</span><br><span class="line">git checkout features/performance                         # 检出已存在的features/performance分支</span><br><span class="line">git checkout --track hotfixes/BJVEP933                    # 检出远程分支hotfixes/BJVEP933并创建本地跟踪分支</span><br><span class="line">git checkout v2.0                                         # 检出版本v2.0</span><br><span class="line">git checkout -b devel origin/develop                      # 从远程分支develop创建新本地分支devel并检出</span><br><span class="line">git checkout -- README                                    # 检出head版本的README文件（可用于修改错误回退）</span><br><span class="line">git merge origin/master                                   # 合并远程master分支至当前分支</span><br><span class="line">git cherry-pick ff44785404a8e                             # 合并提交ff44785404a8e的修改</span><br><span class="line">git push origin master                                    # 将当前分支push到远程master分支</span><br><span class="line">git push origin :hotfixes/BJVEP933                        # 删除远程仓库的hotfixes/BJVEP933分支</span><br><span class="line">git push --tags                                           # 把所有tag推送到远程仓库</span><br><span class="line">git fetch                                                 # 获取所有远程分支（不更新本地分支，另需merge）</span><br><span class="line">git fetch --prune                                         # 获取所有原创分支并清除服务器上已删掉的分支</span><br><span class="line">git pull origin master                                    # 获取远程分支master并merge到当前分支</span><br><span class="line">git mv README README2                                     # 重命名文件README为README2</span><br><span class="line">git reset --hard HEAD                                     # 将当前版本重置为HEAD（通常用于merge失败回退）</span><br><span class="line">git rebase</span><br><span class="line">git branch -d hotfixes/BJVEP933                           # 删除分支hotfixes/BJVEP933（本分支修改已合并到其他分支）</span><br><span class="line">git branch -D hotfixes/BJVEP933                           # 强制删除分支hotfixes/BJVEP933</span><br><span class="line">git ls-files                                              # 列出git index包含的文件</span><br><span class="line">git show-branch                                           # 图示当前分支历史</span><br><span class="line">git show-branch --all                                     # 图示所有分支历史</span><br><span class="line">git whatchanged                                           # 显示提交历史对应的文件修改</span><br><span class="line">git revert dfb02e6e4f2f7b573337763e5c0013802e392818       # 撤销提交dfb02e6e4f2f7b573337763e5c0013802e392818</span><br><span class="line">git ls-tree HEAD                                          # 内部命令：显示某个git对象</span><br><span class="line">git rev-parse v2.0                                        # 内部命令：显示某个ref对于的SHA1 HASH</span><br><span class="line">git reflog                                                # 显示所有提交，包括孤立节点</span><br><span class="line">git show HEAD@&#123;5&#125;</span><br><span class="line">git show master@&#123;yesterday&#125;                               # 显示master分支昨天的状态</span><br><span class="line">git log --pretty=format:&#x27;%h %s&#x27; --graph                   # 图示提交日志</span><br><span class="line">git show HEAD~3</span><br><span class="line">git show -s --pretty=raw 2be7fcb476</span><br><span class="line">git stash                                                 # 暂存当前修改，将所有至为HEAD状态</span><br><span class="line">git stash list                                            # 查看所有暂存</span><br><span class="line">git stash show -p stash@&#123;0&#125;                               # 参考第一次暂存</span><br><span class="line">git stash apply stash@&#123;0&#125;                                 # 应用第一次暂存</span><br><span class="line">git grep &quot;delete from&quot;                                    # 文件中搜索文本“delete from”</span><br><span class="line">git grep -e &#x27;#define&#x27; --and -e SORT_DIRENT</span><br><span class="line">git gc</span><br><span class="line">git fsck</span><br><span class="line"># 生成一个可供发布的压缩包</span><br><span class="line">$ git archive</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="十一-、git-rebase"><a href="#十一-、git-rebase" class="headerlink" title="十一 、git rebase"></a>十一 、git rebase</h3><h4 id="Rebase-场景一：合并多次提交纪录"><a href="#Rebase-场景一：合并多次提交纪录" class="headerlink" title="Rebase 场景一：合并多次提交纪录"></a>Rebase 场景一：合并多次提交纪录</h4><p> 1.我们来合并最近的 4 次提交纪录，执行：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git rebase -i HEAD~4</span><br></pre></td></tr></table></figure>
+
+<p> 2.这时候，会自动进入 vi 编辑模式：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> s cacc52da add: qrcode</span><br><span class="line">s f072ef48 update: indexeddb hack</span><br><span class="line">s 4e84901a feat: add indexedDB floder</span><br><span class="line">s 8f33126c feat: add test2.js</span><br><span class="line"></span><br><span class="line"># Rebase 5f2452b2..8f33126c onto 5f2452b2 (4 commands)</span><br><span class="line">#</span><br><span class="line"># Commands:</span><br><span class="line"># p, pick = use commit</span><br><span class="line"># r, reword = use commit, but edit the commit message</span><br><span class="line"># e, edit = use commit, but stop for amending</span><br><span class="line"># s, squash = use commit, but meld into previous commit</span><br><span class="line"># f, fixup = like &quot;squash&quot;, but discard this commit&#x27;s log message</span><br><span class="line"># x, exec = run command (the rest of the line) using shell</span><br><span class="line"># d, drop = remove commit</span><br><span class="line">#</span><br><span class="line"># These lines can be re-ordered; they are executed from top to bottom.</span><br><span class="line">#</span><br><span class="line"># If you remove a line here THAT COMMIT WILL BE LOST.</span><br><span class="line">#</span><br><span class="line"># However, if you remove everything, the rebase will be aborted.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 按照如上命令来修改你的提交纪录：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">s cacc52da add: qrcode</span><br><span class="line">s f072ef48 update: indexeddb hack</span><br><span class="line">s 4e84901a feat: add indexedDB floder</span><br><span class="line">p 8f33126c feat: add test2.js</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 3.如果保存的时候，你碰到了这个错误：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error: cannot &#x27;squash&#x27; without a previous commit</span><br></pre></td></tr></table></figure>
+
+<p>注意不要合并先前提交的东西，也就是已经提交远程分支的纪录。</p>
+<p>4.如果你异常退出了 vi 窗口，不要紧张：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git rebase --edit-todo</span><br></pre></td></tr></table></figure>
+
+<p>这时候会一直处在这个编辑的模式里，我们可以回去继续编辑，修改完保存一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git rebase --continue</span><br></pre></td></tr></table></figure>
+
+<p>5.查看结果</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure>
+
+<h4 id="Rebase-场景二：分支合并"><a href="#Rebase-场景二：分支合并" class="headerlink" title="Rebase 场景二：分支合并"></a>Rebase 场景二：分支合并</h4><p>1.我们先从 master 分支切出一个 dev 分支，进行开发：<br><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-28-1.png"></p>
+<p>2.这时候，你的同事完成了一次 hotfix，并合并入了 master 分支，此时 master 已经领先于你的 feature1 分支了：<br><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-28-2.png"></p>
+<p>3.恰巧，我们想要同步 master 分支的改动，首先想到了 merge，执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git:(feature1) git merge master</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-28-3.png"></p>
+<p>图中绿色的点就是我们合并之后的结果，执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git:(feature1) git log</span><br></pre></td></tr></table></figure>
+<p>就会在记录里发现一些 merge 的信息，但是我们觉得这样污染了 commit 记录，想要保持一份干净的 commit，怎么办呢？这时候，git rebase 就派上用场了。</p>
+<p>4.让我们来试试 git rebase ，先回退到同事 hotfix 后合并 master 的步骤：<br><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-28-2.png"></p>
+<p>5.使用 rebase 后来看看结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git:(feature1) git rebase master</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里补充一点：rebase 做了什么操作呢？</p>
+</blockquote>
+<p>首先，git 会把 feature1 分支里面的每个 commit 取消掉；<br>其次，把上面的操作临时保存成 patch 文件，存在 .git&#x2F;rebase 目录下；<br>然后，把 feature1 分支更新到最新的 master 分支；<br>最后，把上面保存的 patch 文件应用到 feature1 分支上；</p>
+<p><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-28-5.png"></p>
+<p>从 commit 记录我们可以看出来，feature1 分支是基于 hotfix 合并后的 master ，自然而然的成为了最领先的分支，而且没有 merge 的 commit 记录，是不是感觉很舒服了。</p>
+<p>6.在 rebase 的过程中，也许会出现冲突 conflict。在这种情况，git 会停止 rebase 并会让你去解决冲突。在解决完冲突后，用 git add 命令去更新这些内容。</p>
+<blockquote>
+<p>注意，你无需执行 git-commit，只要执行 continue</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git rebase --continue</span><br></pre></td></tr></table></figure>
+
+<p>这样 git 会继续应用余下的 patch 补丁文件。</p>
+<p>7.在任何时候，我们都可以用 –abort 参数来终止 rebase 的行动，并且分支会回到 rebase 开始前的状态。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git rebase —abort</span><br></pre></td></tr></table></figure>
+<h4 id="三、为什么会是危险操作？"><a href="#三、为什么会是危险操作？" class="headerlink" title="三、为什么会是危险操作？"></a>三、为什么会是危险操作？</h4><p>根据上文来看，git-rebase 很完美，解决了我们的两个问题：<br>1.合并 commit 记录，保持分支整洁；<br>2.相比 merge 来说会减少分支合并的记录；</p>
+<p>如果你提交了代码到远程，提交前是这样的：<br><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-28-2.png"></p>
+<p>提交后远程分支变成了这样：<br><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-28-5.png"></p>
+<p>而此时你的同事也在 feature1 上开发，他的分支依然还是：</p>
+<p><img src="https://raw.githubusercontent.com/shenhongkai/PicGo/main/2022-03-28-6.png"></p>
+<p>那么当他 pull 远程 master 的时候，就会有丢失提交纪录。这就是为什么我们经常听到有人说 git rebase 是一个危险命令，因为它改变了历史，我们应该谨慎使用。</p>
+<blockquote>
+<p>除非你可以肯定该 feature1 分支只有你自己使用，否则请谨慎操作。</p>
+<p>结论：只要你的分支上需要 rebase 的所有 commits 历史还没有被 push 过，就可以安全地使用 git-rebase来操作。</p>
+</blockquote>
+<h4 id="git-rebase-后找回消失的commit"><a href="#git-rebase-后找回消失的commit" class="headerlink" title="git rebase 后找回消失的commit"></a>git rebase 后找回消失的commit</h4><p>在使用Git的过程中，有时候会因为一些误操作，比如reset、rebase、merge等。特别是在Commit之后又执行了git reset –hard HEAD强制回滚本地记录以及文件到服务器版本，导致本地做的修改全部恢复到Git当前分支的服务器版本，同时自己的Commmit记录也消失了。碰到这种情况，不要慌，我们在Git上做的任何操作都只是在原来之前的操作上做修改，并且会被记录下来保存，也就是说无论你做了什么，对于Git来说都可以进行回滚操作。</p>
+<p>reflog : reference logs</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+
+<h5 id="找回Commit"><a href="#找回Commit" class="headerlink" title="找回Commit"></a>找回Commit</h5><p>通过以下例子来了解下具体怎么回滚：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git init</span><br><span class="line">$ touch foo.txt</span><br><span class="line">$ echo &#x27;test data&#x27; &gt;&gt; foo.txt</span><br><span class="line">$ git add foo.txt</span><br><span class="line">$ git commit -m &quot;initial commit&quot;</span><br><span class="line"> </span><br><span class="line">$ echo &#x27;new data&#x27; &gt;&gt; foo.txt</span><br><span class="line">$ git commit -a -m &quot;more stuff added to foo&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>你现在看git的历史记录，你可以看到两次提交：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git log</span><br><span class="line">* 98abc5a (HEAD, master) more stuff added to foo</span><br><span class="line">* b7057a9 initial commit</span><br></pre></td></tr></table></figure>
+<p>现在让我们来重置回第一次提交的状态：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git reset --hard b7057a9</span><br><span class="line">$ git log</span><br><span class="line">* b7057a9 (HEAD, master) initial commit</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这看起来我们是丢掉了我们第二次的提交，本地的修改也消失了，没有办法找回来了。但是 reflog 就是用来解决这个问题的。简单的说，它会记录所有HEAD的历史，也就是说当你做 reset，checkout等操作的时候，这些操作会被记录在reflog中。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git reflog</span><br><span class="line">b7057a9 HEAD@&#123;0&#125;: reset: moving to b7057a9</span><br><span class="line">98abc5a HEAD@&#123;1&#125;: commit: more stuff added to foo</span><br><span class="line">b7057a9 HEAD@&#123;2&#125;: commit (initial): initial commit</span><br></pre></td></tr></table></figure>
+
+<p>所以，我们要找回我们第二commit，只需要做如下操作：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git reset --hard 98abc5a</span><br></pre></td></tr></table></figure>
+<p>再来看一下 git 记录：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git log</span><br><span class="line">* 98abc5a (HEAD, master) more stuff added to foo</span><br><span class="line">* b7057a9 initial commit</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>PS:这里在提一下另一个找回Commit的操作git cherry-pick 98abc5a,这个操作与上面的reset操作区别在于后者只是单纯的提取98abc5a这个Commit进行回滚，如果在b7057a9和98abc5a之间还有其他的Commit操作，则会忽略中间的这些Commit做的修改，所以应用这个命令有可能会文件的冲突</p>
+</blockquote>
+<h3 id="十二、git-reset-和-git-revert"><a href="#十二、git-reset-和-git-revert" class="headerlink" title="十二、git reset 和 git revert"></a>十二、git reset 和 git revert</h3><p>总结</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. git revert 后会多出一条commit，这里可进行回撤操作</span><br><span class="line">2. git reset 直接把之前 commit 删掉，非 git reset --hard 的操作是不会删掉修改代码，如果远程已经有之前代码，需要强推 git push -f</span><br></pre></td></tr></table></figure>
+<p>git reset参数定义 <a href="https://git-scm.com/docs/git-reset">具体见官网</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">--soft 回退后a分支修改的代码被保留并标记为add的状态（git status 是绿色的状态）</span><br><span class="line">--mixed 重置索引，但不重置工作树，更改后的文件标记为未提交（add）的状态。默认操作。</span><br><span class="line">--hard 重置索引和工作树，并且a分支修改的所有文件和中间的提交，没提交的代码都被丢弃了。</span><br><span class="line">--merge 和--hard类似，只不过如果在执行reset命令之前你有改动一些文件并且未提交，merge会保留你的这些修改，hard则不会。【注：如果你的这些修改add过或commit过，merge和hard都将删除你的提交】</span><br><span class="line">--keep 和--hard类似，执行reset之前改动文件如果是a分支修改了的，会提示你修改了相同的文件，不能合并。如果不是a分支修改的文件，会移除缓存区。git status还是可以看到保持了这些修改。</span><br></pre></td></tr></table></figure>
+
+<p>区别</p>
+<p>区别</p>
+<blockquote>
+<p>1.git revert是用一次新的commit来回滚之前的commit，git reset是直接删除指定的commit。<br>这个很好理解，在刚才的操作中我们看日志已经可以看到这个现象。<br>git reset操作之后，我们查看上面例子的network已经可以看到network中只有commit 1,分支a和合并分支后的commit 3都消失了；<br>git revert操作之后，network中还是可以看到a分支和合并a分支的操作，只不过在其基础上又增加了一个revert的commit而已。</p>
+</blockquote>
+<blockquote>
+<p>2.git reset 是把HEAD向后移动了一下，而git revert是HEAD继续前进，只是新的commit的内容和要revert的内容正好相反，能够抵消要被revert的内容。<br>这个也是可以清晰明了的看到，我就不做过多的解释了</p>
+</blockquote>
+<blockquote>
+<p>3.在回滚这一操作上看，效果差不多。但是在日后继续merge以前的老版本时有区别。因为git revert是用一次逆向的commit“中和”之前的提交，因此日后合并老的branch时，导致这部分改变不会再次出现，但是git reset是直接把某些commit在某个branch上删除，因而和老的branch再次merge时，这些被回滚的commit应该还会被引入。</p>
+</blockquote>
+<p>参考:</p>
+<p><a href="https://blog.51cto.com/u_13533483/2057387">Git &amp; CocoaPods &amp; 私有化，你不得不知的组件化基础！</a></p>
+<p><a href="https://segmentfault.com/a/1190000039147662">Git常用命令，总结的很全了！</a></p>
+<p><a href="http://jartto.wang/2018/12/11/git-rebase/">彻底搞懂 Git-Rebase</a></p>
+<p><a href="https://blog.csdn.net/weixin_30287169/article/details/96843608?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1.pc_relevant_aa&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1.pc_relevant_aa&utm_relevant_index=2">找回Git中丢失的Commit</a></p>
+<p><a href="https://juejin.cn/post/6844903614767448072">git reset 和 git revert</a></p>
+]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>回顾总结</tag>
       </tags>
   </entry>
 </search>

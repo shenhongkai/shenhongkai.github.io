@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://shenhongkai.com/2022/03/28/git%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2022-03-28</lastmod>
+  </url>
+  <url>
     <loc>https://shenhongkai.com/2022/03/16/iOS%E6%9A%97%E5%A4%9C%E6%A8%A1%E5%BC%8F%E9%80%82%E9%85%8D%E5%AE%9E%E6%93%8D/</loc>
-    <lastmod>2022-03-25</lastmod>
+    <lastmod>2022-03-28</lastmod>
   </url>
   <url>
     <loc>https://shenhongkai.com/2022/03/21/iOS%20NSUInteger%20%E8%BF%90%E7%AE%97%E9%97%AE%E9%A2%98/</loc>
