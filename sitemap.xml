@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shenhongkai.com/2022/06/28/RAC-MVVM/</loc>
+    
+    <lastmod>2022-06-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://shenhongkai.com/2022/04/14/iOS%E5%85%B3%E9%94%AE%E5%AD%97/</loc>
     
     <lastmod>2022-05-07</lastmod>
@@ -94,6 +103,13 @@
   
   <url>
     <loc>https://shenhongkai.com/tags/%E5%85%B3%E9%94%AE%E5%AD%97/</loc>
+    <lastmod>2022-06-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://shenhongkai.com/tags/RAC-MVVM/</loc>
     <lastmod>2022-06-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
